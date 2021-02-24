@@ -7,7 +7,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='click-prettify',
-    version='0.0.1',
+    version='0.2.0',
     description='Extensions for click to make pretty CLIs in Python',
     long_description=long_description,
     url='https://github.com/jnrbsn/python-click-prettify',

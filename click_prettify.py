@@ -93,11 +93,20 @@ click.h2echo = h2echo
 click.h3echo = h3echo
 
 
-def subproc_run(args, hmsg='$ {command}', hlevel=1, **kwargs):
+_subproc_run_default_hmsg = '$ {command}'
+
+
+def subproc_run(
+        args, hmsg=_subproc_run_default_hmsg, hlevel=1, fg=True, **kwargs):
     """User-friendly wrapper around subprocess.run"""
     check = kwargs.get('check', True)
     kwargs['check'] = False
     kwargs['shell'] = False
+
+    if not fg:
+        kwargs['capture_output'] = True
+        if hmsg is _subproc_run_default_hmsg:
+            hmsg = None
 
     command = ' '.join((f"'{a}'" if ' ' in a else a) for a in args)
 
